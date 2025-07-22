@@ -1,0 +1,51 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+import matplotlib.cm as cm
+import numpy  as np
+cars_df=pd.read_csv('Cars93.csv')
+print(cars_df)
+
+fig,ax=plt.subplots(2,3)
+fig.set_figwidth(10)
+fig.set_figheight(7)
+ax[0][0].boxplot(cars_df["Price"][cars_df["Type"]=="Compact"])
+ax[0][0].set_title('Comapct')
+ax[0][1].boxplot(cars_df["Price"][cars_df["Type"]=="Large"])
+ax[0][1].set_title('Large')
+ax[0][2].boxplot(cars_df["Price"][cars_df["Type"]=="midsize"])
+ax[0][2].set_title('midsize')
+ax[1][0].boxplot(cars_df["Price"][cars_df["Type"]=="Small"])
+ax[1][0].set_title('Small')
+ax[1][1].boxplot(cars_df["Price"][cars_df["Type"]=="Sporty"])
+ax[1][1].set_title('Sporty')
+ax[1][2].boxplot(cars_df["Price"][cars_df["Type"]=="Van"])
+ax[1][2].set_title('Van')
+plt.tight_layout(rect=[0,0,1,0.96])
+plt.show()
+
+min_value=np.min(cars_df["Price"])
+q1=np.percentile(cars_df["Price"],25)
+median=np.median(cars_df["Price"])
+q3=np.percentile(cars_df["Price"],75)
+max_value=np.max(cars_df["Price"])
+print('Minimum value:',min_value)
+print('Q1:',q1)
+print('Median:',median)
+print('Q3:',q3)
+print("Maximum value:",max_value)
+plt.show()
+
+                                  
+plt.scatter(cars_df['Weight'],cars_df['MPG.city'],color="black")
+plt.xlabel('Weight')
+plt.ylabel('MPG.city')
+plt.title('weigth vs  Mpg.city',fontsize=16)
+plt.show()
+
+
+plt.plot(cars_df["EngineSize"] ,  cars_df["Horsepower"])
+plt.xlabel('Enginesize')
+plt.ylabel('Horsepower')
+plt.title('line chart to observe the variation in "Enginesize" against "Horsepower"')
+plt.show()
